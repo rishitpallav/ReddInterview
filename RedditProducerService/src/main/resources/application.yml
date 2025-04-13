@@ -16,7 +16,7 @@ reddit:
 
   client-id: CLIENT-ID
   client-secret: CLIENT-SECRET
-  user-agent: SkyRanker
+  user-agent: USER-AGENT
 
 topic:
   name: reddit.raw.posts

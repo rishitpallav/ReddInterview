@@ -62,6 +62,7 @@ public class RedditFetcherScheduler {
                     RedditPost post = RedditPost.builder()
                             .id(data.getId())
                             .title(data.getTitle())
+                            .content(data.getSelftext())
                             .author(data.getAuthor())
                             .url("https://reddit.com" + data.getPermalink())
                             .createdUtc(data.getCreated_utc())

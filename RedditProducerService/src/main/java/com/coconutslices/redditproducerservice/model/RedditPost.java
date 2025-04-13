@@ -14,6 +14,7 @@ import java.time.Instant;
 public class RedditPost {
     private String id;
     private String title;
+    private String content;
     private String author;
     private String url;
     private long createdUtc;

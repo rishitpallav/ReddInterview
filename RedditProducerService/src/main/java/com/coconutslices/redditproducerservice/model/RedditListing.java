@@ -23,6 +23,7 @@ public class RedditListing {
     public static class RedditPostData {
         private String id;
         private String title;
+        private String selftext;
         private String author;
         private String permalink;
         private long created_utc;
