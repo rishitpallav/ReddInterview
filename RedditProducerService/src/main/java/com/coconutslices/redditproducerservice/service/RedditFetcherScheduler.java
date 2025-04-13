@@ -1,30 +1,81 @@
 package com.coconutslices.redditproducerservice.service;
 
+import com.coconutslices.redditproducerservice.model.RedditListing;
 import com.coconutslices.redditproducerservice.model.RedditPost;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+//import org.jsoup.Jsoup;
+//import org.jsoup.nodes.Document;
+//import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 
 import java.time.Instant;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
-@Component
-@RequiredArgsConstructor
+@Service
 @Slf4j
 public class RedditFetcherScheduler {
 
+    private final RedditAuthClient redditAuthClient;
     private final RedditProducerService redditProducerService;
+    private final WebClient redditApiClient;
 
     @Value("${reddit.subreddits}")
     private String subredditList;
 
-    private final Set<String> seen = new HashSet<>();
+    private final Set<String> seen = ConcurrentHashMap.newKeySet();
+
+    public RedditFetcherScheduler(RedditAuthClient redditAuthClient, RedditProducerService redditProducerService, @Value("${reddit.user-agent}") String userAgent, @Value("${reddit.o-auth-url}") String oAuthUrl) {
+        this.redditAuthClient = redditAuthClient;
+        this.redditProducerService = redditProducerService;
+        redditApiClient = WebClient.builder()
+                .baseUrl(oAuthUrl)
+                .defaultHeader(HttpHeaders.USER_AGENT, userAgent)
+                .build();
+    }
+
+    @Scheduled(fixedDelayString = "${reddit.interval-seconds}000")
+    public void fetchFromSubreddits() {
+        redditAuthClient.getAccessToken().subscribe(token -> {
+            String[] subreddits = subredditList.split(",");
+            for (String sub : subreddits) {
+                String subreddit = sub.trim();
+                fetchFromSubreddit(subreddit, token);
+            }
+        });
+    }
+
+    private void fetchFromSubreddit (String subreddit, String accessToken) {
+        redditApiClient.get()
+                .uri("/r/{subreddit}/new?limit=10", subreddit)
+                .header("Authorization", "Bearer " + accessToken)
+                .retrieve()
+                .bodyToMono(RedditListing.class)
+                .flatMapMany(listing -> Flux.fromIterable(listing.getData().getChildren()))
+                .map(RedditListing.RedditPostWrapper::getData)
+                .doOnNext(data -> {
+                    RedditPost post = RedditPost.builder()
+                            .id(data.getId())
+                            .title(data.getTitle())
+                            .author(data.getAuthor())
+                            .url("https://reddit.com" + data.getPermalink())
+                            .createdUtc(data.getCreated_utc())
+                            .fetchedAt(Instant.now())
+                            .score(data.getScore())
+                            .subreddit(subreddit)
+                            .build();
+                    if (seen.add(post.getId())) {
+                        redditProducerService.sendRedditPost(post);
+                    }
+                })
+                .doOnError(e -> log.error("⚠️ Error fetching from subreddit : /r/{} : {}", subreddit, e.getMessage()))
+                .subscribe();
+    }
 
     // If Web Scraping is planned:
 //    @Scheduled(fixedDelayString = "${reddit.interval-seconds}000")

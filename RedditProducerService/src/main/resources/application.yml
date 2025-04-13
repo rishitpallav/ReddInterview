@@ -12,6 +12,11 @@ spring:
 reddit:
   subreddits: interviews,leetcode,big_tech_interviews
   interval-seconds: 10
+  o-auth-url: https://oauth.reddit.com
+
+  client-id: CLIENT-ID
+  client-secret: CLIENT-SECRET
+  user-agent: SkyRanker
 
 topic:
   name: reddit.raw.posts
