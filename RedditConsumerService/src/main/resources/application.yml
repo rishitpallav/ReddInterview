@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: RedditConsumerService
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: reddit-consumer-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.coconutslices.redditproducerservice.model
+    listener:
+      ack-mode: record
+      missing-topics-fatal: false
+
+server:
+  port: 8081
+
+topic:
+  name: reddit.raw.posts
