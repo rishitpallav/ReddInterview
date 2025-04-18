@@ -1,0 +1,250 @@
+google
+amazon
+meta
+netflix
+microsoft
+apple
+nvidia
+tesla
+salesforce
+adobe
+oracle
+intel
+ibm
+uber
+airbnb
+spotify
+snap
+twitter
+stripe
+zoom
+linkedin
+pinterest
+dropbox
+palantir
+doordash
+accenture
+deloitte
+ey
+pwc
+kpmg
+mckinsey
+bcg
+bain
+goldman sachs
+jp morgan
+morgan stanley
+bank of america
+citigroup
+wells fargo
+capital one
+american express
+visa
+mastercard
+square
+robinhood
+bloomberg
+charles schwab
+ford
+general motors
+toyota
+honda
+bmw
+mercedes-benz
+volkswagen
+audi
+boeing
+airbus
+lockheed martin
+northrop grumman
+raytheon technologies
+spacex
+samsung
+lg
+sony
+panasonic
+philips
+whirlpool
+ge appliances
+haier
+walmart
+target
+costco
+best buy
+ebay
+alibaba
+flipkart
+etsy
+macy's
+home depot
+lowe's
+ikea
+wayfair
+pepsico
+coca-cola
+nestle
+unilever
+kraft heinz
+general mills
+mondelez
+starbucks
+mcdonald's
+domino's
+chipotle
+yum brands
+anheuser-busch
+pfizer
+moderna
+johnson & johnson
+merck
+novartis
+roche
+astrazeneca
+gsk
+bayer
+abbvie
+amgen
+sanofi
+biogen
+cvs health
+walgreens
+aetna
+cigna
+unitedhealth group
+anthem
+state farm
+allstate
+progressive
+geico
+metlife
+prudential
+liberty mutual
+delta
+united airlines
+american airlines
+southwest
+jetblue
+emirates
+qatar airways
+singapore airlines
+lufthansa
+british airways
+at&t
+verizon
+t-mobile
+comcast
+charter
+bt
+telefonica
+orange
+nokia
+ericsson
+cisco
+juniper networks
+tsmc
+asml
+amd
+qualcomm
+broadcom
+micron
+arm
+marvell
+infineon
+exxonmobil
+chevron
+shell
+bp
+totalenergies
+schlumberger
+halliburton
+nextera energy
+siemens energy
+enel
+disney
+warner bros
+universal
+paramount
+sony pictures
+lionsgate
+netflix
+hbo
+hulu
+twitch
+crunchyroll
+fedex
+ups
+dhl
+maersk
+jb hunt
+xpo logistics
+ryder
+c.h. robinson
+zillow
+redfin
+realtor.com
+opendoor
+compass
+atlassian
+datadog
+snowflake
+mongodb
+elastic
+hashicorp
+twilio
+cloudflare
+okta
+pagerduty
+servicenow
+github
+bitbucket
+digitalocean
+fastly
+shopify
+squarespace
+wix
+canva
+figma
+notion
+miro
+slack
+asana
+trello
+jira
+monday.com
+clickup
+zoominfo
+zapier
+zaplabs
+segment
+plaid
+mixpanel
+amplitude
+postman
+apigee
+new relic
+sentry
+databricks
+hugging face
+anthropic
+openai
+deepmind
+stability ai
+runway
+weights & biases
+kite
+replit
+codesandbox
+netlify
+vercel
+heroku
+render
+supabase
+planetscale
+railway
+fly.io
+terraform
+circleci
+travis ci
+jenkins
+bamboo
+bitrise
