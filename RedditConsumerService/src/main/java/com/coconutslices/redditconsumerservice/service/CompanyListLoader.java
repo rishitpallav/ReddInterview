@@ -29,7 +29,12 @@ public class CompanyListLoader {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                tempCompaniesSet.add(line.trim().toLowerCase());
+
+                line = line.trim().toLowerCase();
+
+                if (!line.isBlank()) {
+                    tempCompaniesSet.add(line.trim().toLowerCase());
+                }
             }
 
             reader.close();
