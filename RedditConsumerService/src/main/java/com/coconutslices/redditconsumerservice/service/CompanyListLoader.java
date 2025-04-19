@@ -6,9 +6,9 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,9 +16,12 @@ import java.util.Set;
 @Slf4j
 public class CompanyListLoader {
 
-    private final Set<String> companies = new HashSet<>();
+    private final Set<String> companies;
 
     public CompanyListLoader (@Value("${file-path.company-names}") String companyNamesFilePath) {
+
+        Set<String> tempCompaniesSet = new HashSet<>();
+
         try {
             InputStream inputStream = new ClassPathResource(companyNamesFilePath).getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -26,15 +29,18 @@ public class CompanyListLoader {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                companies.add(line.trim().toLowerCase());
+                tempCompaniesSet.add(line.trim().toLowerCase());
             }
 
             reader.close();
 
-            log.info("✅ Loaded {} companies from {}", companies.size(), companyNamesFilePath);
+            log.info("✅ Loaded {} unique companies from {}", tempCompaniesSet.size(), companyNamesFilePath);
         } catch (Exception e) {
-            log.error("❗ Error loading companies: {}", e.getMessage());
+            log.error("❗ Error loading companies from {} : {}", companyNamesFilePath, e.getMessage());
         }
+
+        companies = Collections.unmodifiableSet(tempCompaniesSet);
+
     }
 
     public Set<String> getCompanies() {
