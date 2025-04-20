@@ -56,9 +56,9 @@ The primary goals of ReddInterview are:
 The following components are currently under development or completed:
 
 * **Spring Boot Kafka Producer Service:** ✅ Created and functional.
-* **OAuth2 Reddit API Integration (Client Credentials flow):** ✅ Implemented for secure communication with the Reddit API.
+* **OAuth2 Reddit API Integration:** ✅ Implemented for secure communication with the Reddit API.
 * **Multi-subreddit support (e.g., interviews, leetcode, big\_tech\_interviews):** ✅ Configured to fetch data from multiple targeted subreddits.
-* **Fetched post metadata and full content using `selftext`:** ✅ Successfully retrieving relevant post information.
+* **Fetched post metadata and full content using `WebClient`:** ✅ Successfully retrieving relevant post information.
 * **Publishing structured `RedditPost` objects to Kafka topic `reddit.raw.posts`:** ✅ Raw Reddit post data is being streamed to Kafka.
 * **Kafka Consumer Service:** ✅ Successfully implemented to consume raw posts from Kafka and begin the data extraction.
 * **Extracting information:** ✅ Successfully extracted information about the company and LeetCode questions asked from the post.
