@@ -18,7 +18,6 @@ public class RedditPost {
     private String author;
     private String url;
     private long createdUtc;
-    private int score;
     private String subreddit;
     private Instant fetchedAt;
 }
