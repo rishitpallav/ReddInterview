@@ -30,9 +30,9 @@ The project leverages a modern microservices architecture built with the followi
 * **Reddit API Integration:** Spring WebFlux + WebClient, OAuth2-secured
 * **Scheduling:** Spring Scheduling (Periodic subreddit polling)
 * **Messaging Backbone:** Kafka
+* **Data Storage:** PostgreSQL
 * **Real-time Notifications (Planned):** Redis (Pub/Sub)
 * **Security (Planned):** Spring Security (Auth microservice with JWT)
-* **Data Storage (Planned):** PostgreSQL / MongoDB (Interview data storage)
 * **API Gateway (Planned):** Zuul
 * **Containerization (Planned):** Docker
 
@@ -42,9 +42,9 @@ The primary goals of ReddInterview are:
 
 * ✅ **Build a Kafka-based Reddit post producer using Spring Boot:** Successfully implemented.
 * 🔄 **Stream interview-related content from multiple subreddits:** Successfully implemented for specified subreddits.
-* 📊 **Extract structured data: questions, companies, answers:** In progress (Next Step: Kafka Consumer Service).
-* 🧠 **Add regex/NLP-based parsing to classify content:** Planned for the Kafka Consumer Service.
-* 💾 **Store structured results in a database:** Planned for the Interview Service.
+* 📊 **Extract structured data: questions, companies, answers:** Successfully implemented in Consumer Service.
+* 🧠 **Add regex/NLP-based parsing to classify content:** Successfully implemented in Consumer Service.
+* 💾 **Store structured results in a database:** Successfully implemented in Interview Service.
 * 🔐 **Secure endpoints using JWT-based Spring Security:** Planned for the Auth Service.
 * 📢 **Send live notifications via Redis Pub/Sub:** Planned for the Notification Service.
 * 🌐 **Route traffic via Zuul API Gateway:** Planned for the API Gateway Service.
@@ -60,8 +60,12 @@ The following components are currently under development or completed:
 * **Multi-subreddit support (e.g., interviews, leetcode, big\_tech\_interviews):** ✅ Configured to fetch data from multiple targeted subreddits.
 * **Fetched post metadata and full content using `selftext`:** ✅ Successfully retrieving relevant post information.
 * **Publishing structured `RedditPost` objects to Kafka topic `reddit.raw.posts`:** ✅ Raw Reddit post data is being streamed to Kafka.
-* **Kafka Consumer Service:** 🚧 **Next Step:** This service will consume raw posts from Kafka and begin the data extraction process.
-* **InterviewService with DB persistence:** ⏳ Planned for development after the Consumer Service.
+* **Kafka Consumer Service:** ✅ Successfully implemented to consume raw posts from Kafka and begin the data extraction.
+* **Extracting information:** ✅ Successfully extracted information about the company and LeetCode questions asked from the post.
+* **InterviewService with DB persistence:** ✅ Implemented pushing the extracted information to the PostgreSQL Database.
+* **REST End Points:** 🚧 Planned to create proper REST APIs for consumer and admin usage.
+* **Secure endpoints using JWT-based Spring Security:** 🚧 Planned to create user authentication and authorization to access the website.
+* **Planned a Pub/Sub Model to send notifications:** ⏳ Planned to send new interviews to users subscribed to a company.
 * **Zuul gateway and Redis notification:** ⏳ Planned for later stages of development.
 * **CI/CD + Dockerization:** ⏳ Planned for deployment and continuous integration.
 
