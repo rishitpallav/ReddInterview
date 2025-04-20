@@ -19,6 +19,10 @@ server:
 topic:
   name: reddit.raw.posts
 
+interview:
+  service:
+    base-url: http://localhost:8082
+
 file-path:
   company-names: /data/company_names.txt
   leetcode-questions: /data/leetcode_questions.txt
