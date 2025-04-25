@@ -24,10 +24,6 @@ public class TokenService {
         );
     }
 
-    public boolean isTokenValid(String token) {
-        return Boolean.TRUE.equals(redisTemplate.hasKey(PREFIX + token));
-    }
-
     public void deleteKey(String token) {
         redisTemplate.delete(PREFIX + token);
         log.info("✅ Token deleted from Redis cache");
